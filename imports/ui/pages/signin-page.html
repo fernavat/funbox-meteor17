@@ -1,0 +1,41 @@
+<template name="Signin_page">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item">
+          <span class="icon-list-unordered"></span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        {{#unless showKeypad}}
+        <h1 class="title-auth">Entrar a tu cuenta</h1>
+        <p class="subtitle-auth">Entrar a tu cuenta te permite ver tus listas personales</p>
+
+        <div class="btns-group-vertical">
+          <a href="#" class="js-user-menu btn-secondary">
+            {{#if userMenuOpen}}
+            <span class="icon-arrow-up"></span>
+            {{else}}
+            <span class="icon-arrow-down"></span>
+            {{/if}} Selecciona un usuario...
+          </a>
+          {{#if userMenuOpen}}
+            {{#each user in users}}
+              <a class="js-login btn-secondary" id="{{user._id}}">{{user.username}}</a>
+            {{/each}}
+          {{/if}}
+        </div>
+        {{else}}
+          <h1 class="title-auth">Administrador</h1>
+          <p class="subtitle-auth">Introduce la contraseña de administrador</p>
+          {{>Keypad}}
+        {{/unless}}
+
+
+      </div>
+    </div>
+  </div>
+</template>

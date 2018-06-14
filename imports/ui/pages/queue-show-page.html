@@ -1,0 +1,21 @@
+<template name="Queue_show_page">
+  <div class="page lists-show">
+    {{> Queue_header}}
+    <div class="playlist-items">
+      <div class="content-scrollable">
+        <div class="playlist">
+            {{#each video in queue}} 
+            {{> Videos_item (videoArgs video)}}
+        {{else}}
+        <div class="wrapper-message">
+          <div class="title-message">{{_ 'lists.show.noTasks'}}</div>
+          <div class="subtitle-message">{{_ 'lists.show.addAbove'}}</div>
+        </div>
+        {{/each}}
+        </div>
+      </div>
+    </div>
+    {{> Footer}}
+  </div>
+
+</template>

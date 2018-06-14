@@ -1,0 +1,19 @@
+<template name="Playlists_show_page">
+  {{#if playlistIdArray}}
+    <div class="page lists-show">
+      {{> Header playlist}}
+      <div class="playlist-items">
+        <div class="content-scrollable">
+          <div class="playlist">
+            {{#each playlistId in playlistIdArray}} 
+              {{> Playlists_show (playlistArgs playlistId)}} 
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      {{> Footer}}
+    </div>
+  {{else}} 
+    {{> App_notFound}} 
+  {{/if}}
+</template>

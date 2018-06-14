@@ -1,0 +1,84 @@
+<template name="menu">
+
+  <div class="segmented-control" style="width: 100%; color: #5db9ff">
+    <input type="radio" name="sc-1-1" id="sc-1" checked>
+    <input type="radio" name="sc-1-1" id="sc-2">
+    <input type="radio" name="sc-1-1" id="sc-3">
+
+    <label for="sc-1" data-value="Tops" id="tops">Tops</label>
+    <label for="sc-2" data-value="Usuario" id="user">Usuario</label>
+    <label for="sc-3" data-value="Extras" id="extras">Extras</label>
+  </div>
+
+  {{# if showMenu "sc-1"}}
+  {{#each playlist in playlists}}
+    <div class="list-todos top-playlist">
+      <a href="{{pathFor 'Playlists.show' _id=playlist._id}}" title="{{playlist.name}}" 
+        class="list-todo {{playlistClass playlist._id}}" id="{{playlist._id}}">
+        {{playlist.name}}
+        <span class="count-list">{{playlist.itemsCount}}</span>
+      </a>
+    </div>
+  {{/each}}
+
+  {{else}} 
+    {{#if showMenu "sc-2"}}
+    {{# if isInRole 'admin'}}
+    Este es un admin
+    {{/if}}
+    {{# if isInRole 'user'}}
+    Este es un user
+    {{/if}}
+      {{#if currentUser}}
+      <div class="btns-group-vertical">
+        <a href="#" class="js-user-menu btn-secondary">
+          {{#if userMenuOpen}}
+          <span class="icon-arrow-up"></span>
+          {{else}}
+          <span class="icon-arrow-down"></span>
+          {{/if}} {{username}}
+        </a>
+        {{#if userMenuOpen}}
+        <a class="js-logout btn-secondary">
+          {{_ 'layouts.appBody.logout'}}
+        </a>
+        {{/if}}
+      </div>
+      {{else}}
+      <div class="btns-group">
+        <a href="{{pathFor 'Entrar'}}" class="btn-secondary">
+          Entrar
+        </a>
+        <a href="{{pathFor 'Crear'}}" class="btn-secondary">
+          Crear
+        </a>
+      </div>
+      {{/if}}
+
+    {{else}}
+      <div class="list-todos extra-playlist">
+        <a href="{{pathFor 'Queue.show'}}" title="playlist"
+          class="list-todo {{extraClass 'queue'}}" id="queue">
+          Lista de Reproducción
+          <span class="count-list">{{queueCount}}</span>
+        </a>
+        <a href="#" title="playlist" 
+          class="list-todo {{extraClass 'favorites'}}" id="favorites">
+          Favoritos
+          <span class="count-list">0</span>
+        </a>
+        <a href="{{pathFor 'Search'}}" title="search" 
+          class="list-todo {{extraClass 'search'}}" id="search">
+          Búsquedas
+          <span class="count-list">0</span>
+        </a>
+        <a href="#" title="playlist" 
+          class="list-todo {{extraClass 'history'}}" id="history">
+          Historial
+          <span class="count-list">0</span>
+        </a>        
+      </div>
+    {{/if}}
+  {{/if}}
+
+</template>

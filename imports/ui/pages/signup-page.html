@@ -1,0 +1,36 @@
+<template name="Signup_page">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item">
+          <span class="icon-list-unordered"></span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Crear una Cuenta</h1>
+        <p class="subtitle-auth">Registrarse te permite tener listas personales</p>
+
+        <div class="at-pwd-form">
+          <form role="form" id="at-pwd-form" action="#" method="POST" name="signupForm">
+            <div class="input {{#if isValidating}}validating{{/if}} {{#if hasError}}has-error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+              {{#if hasError}}
+              <div class="list-errors">
+                {{#each error}}
+                  <div class="list-item">{{errorText}}</div>
+                {{/each}}
+              </div>
+              {{/if}}
+              <input type="text" id="at-field-name" name="at-field-name" placeholder="Nombre" autocapitalize="none" autocorrect="off"> 
+            </div>
+            <button type="submit" class="btn-primary">
+              Registrarse
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

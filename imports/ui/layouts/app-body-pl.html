@@ -1,0 +1,25 @@
+<template name="App_body_pl">
+  <div id="container" class="{{menuOpen}} {{cordova}}">
+
+    <section id="menu">
+      {{>videoPlayer }} 
+        {{> menu}}
+
+    </section>
+
+
+    <div class="content-overlay">
+
+    </div>
+    <div id="content-container">
+        {{#momentum plugin="fade"}}
+          {{#if Template.subscriptionsReady}}
+            {{> Template.dynamic template=main}}
+          {{else}}
+            {{> App_loading}}
+          {{/if}}
+        {{/momentum}}
+    </div>
+  </div>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</template>

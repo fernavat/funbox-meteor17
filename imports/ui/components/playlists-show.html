@@ -1,0 +1,16 @@
+<template name="Playlists_show">
+  {{#if videosReady}} 
+    {{#each video in videos}} 
+      {{> Videos_item (videoArgs video)}}
+    {{else}}
+      <div class="wrapper-message">
+        <div class="title-message">{{_ 'lists.show.noTasks'}}</div>
+        <div class="subtitle-message">{{_ 'lists.show.addAbove'}}</div>
+      </div>
+    {{/each}} 
+  {{else}}
+    <div class="wrapper-message">
+      <div class="title-message">{{_ 'lists.show.loading'}}</div>
+    </div>
+  {{/if}}
+</template>
